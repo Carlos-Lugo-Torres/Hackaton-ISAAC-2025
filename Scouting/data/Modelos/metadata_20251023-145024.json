@@ -1,0 +1,28 @@
+{
+  "created_at": "20251023-145024",
+  "n_players": 970,
+  "n_docs": 970,
+  "doc_lengths": {
+    "min": 30,
+    "p50": 1561.0,
+    "max": 23003,
+    "mean": 2931.442268041237
+  },
+  "d2v_hparams": {
+    "vector_size": 128,
+    "window": 8,
+    "min_count": 1,
+    "dm": 1,
+    "negative": 10,
+    "epochs": 12
+  },
+  "w2v_summary": {
+    "vector_size": 128,
+    "vocab_size": 181
+  },
+  "files": {
+    "doc2vec_model": "Datos\\Resultados\\Embeddings\\doc2vec_128d_20251023-145024.model",
+    "players_index_parquet": "Datos\\Resultados\\Embeddings\\players_index_20251023-145024.parquet",
+    "player_docs_pickle": "Datos\\Resultados\\Embeddings\\player_docs_20251023-145024.pkl.gz"
+  }
+}
