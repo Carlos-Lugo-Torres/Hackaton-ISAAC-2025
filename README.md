@@ -4,15 +4,15 @@ En un mundo donde cada vez hay mayor influencia tecnología, el scouting de juga
 ## Metodología:
 La premisa fundamental de este modelo es que el estilo de juego de un futbolista, ese conjunto de tendencias, decisiones y acciones que lo definen en el campo, puede ser cuantificado. Esta cuantificación es el pilar de nuestro algoritmo de fichajes. Pasamos de la intuición a la evidencia, transformando el arte del scouting en una ciencia aplicada.
 Consideramos esencial que el proyecto tuviera validación humana, entonces nos basamos en varios papers (incluidos más abajo en este mismo documento). Establecimos los 3 objetivos del proyecto: 
-hacer un fingerprint por jugador, con ayuda de clustering y PCA, 
-embedding para poder enfocarnos no sólo en el “qué” del jugador, sino en el contexto, para encontrar su estilo de juego y entender la secuencia y el contexto de sus acciones en el campo, 
-calculamos la similitud coseno entre los vectores de los jugadores para identificar los jugadores más parecidos tanto con PCA como con embedings. 
+1) hacer un fingerprint por jugador, con ayuda de clustering y PCA.
+2) hacer un embedding para poder enfocarnos no sólo en el “qué” del jugador, sino en el contexto, para encontrar su estilo de juego y entender la secuencia y el contexto de sus acciones en el campo.
+3) calcular la similitud coseno entre los vectores de los jugadores para identificar los jugadores más parecidos tanto con PCA como con embedings. 
 El procedimiento que seguimos fue bastante detallado. Leímos y estructuramos datos de StatsBomb. Revisamos el estado y calidad de los datos, como filtrando jugadores que hayan realizado 30 acciones o más (min_actions=30) y que hayan jugado mínimo 900 minutos. 
 Lo primero que hicimos fue crear un fingerprint por jugador, el cual incluye características y métricas estandarizadas individuales como tiros, pases, entradas, intercepciones, regates, centros, goles esperados, asistencias esperadas, acciones de creación de tiro, acciones de creación de gol, pases progresivos, acarreos progresivos, presiones, recuperaciones. Aplicamos PCA para reducir la dimensionalidad de estos datos y ocupar sólo acciones de interés. Así mismo determinamos que el número óptimo de clústeres es 4 y dadas las características de cada uno definimos que fueran
-delantero de área, 
-defensa central aéreo, 
-creador asociativo, 
-mediocampista recuperador.
+- delantero de área
+- defensa central aéreo
+- creador asociativo
+- mediocampista recuperador.
 Seguidamente, calculamos la diferencia coseno desde un  jugador objetivo a todos los demás, y así encontramos perfiles estadísticamente similares. 
 Por último, decidimos analizar el estilo de juego de cada jugador, utilizando embedding. De acuerdo con Medium (marzo 2, 2023), “al convertir el lenguaje humano en vectores matemáticos, los embeddings permiten que las computadoras procesen grandes cantidades de datos de manera más efectiva y eficiente”. Comenzamos “tokenizando” los datos de eventos en bruto, donde cada acción se convirtió en un token, el cual encapsula el tipo de acción, su contexto espacial (obtenido después de haber dividido el campo en nueve zonas) y atributos de ejecución precisos (como la presencia de presión, características del pase o la técnica del tiro: “BajoPresion”, “ContraPresion”). Se generaron 2,841,541 tokens para 970 jugadores. Estos tokens se ordenaron cronológicamente para cada jugador. Entrenamos modelos de embedding: Word2Vec que aprende relaciones semánticas entre las acciones y Doc2Vec que genera un vector único que representa el estilo secuencial de cada jugador. Enseguida, agrupamos vectores por jugador; es decir, hicimos pooling. Luego, utilizamos la similitud del coseno para medir la distancia entre los vectores de los jugadores en este espacio de embeddings. Una distancia menor implica un estilo de juego similar, lo cual permite una comparación profunda de cómo los jugadores ejecutan sus roles en el campo.
 	De esta forma, nuestro análisis no solo refleja similitud entre jugadores mediante el tipo de acciones que realizan en el campo (con PCAs y clusters) sino también la manera en que realizan las acciones.
