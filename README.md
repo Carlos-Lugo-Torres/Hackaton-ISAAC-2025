@@ -6,7 +6,7 @@ La premisa fundamental de este modelo es que el estilo de juego de un futbolista
 Consideramos esencial que el proyecto tuviera validación humana, entonces nos basamos en varios papers (incluidos más abajo en este mismo documento). Establecimos los 3 objetivos del proyecto: 
 1) hacer un fingerprint por jugador, con ayuda de clustering y PCA.
 2) hacer un embedding para poder enfocarnos no sólo en el “qué” del jugador, sino en el contexto, para encontrar su estilo de juego y entender la secuencia y el contexto de sus acciones en el campo.
-3) calcular la similitud coseno entre los vectores de los jugadores para identificar los jugadores más parecidos tanto con PCA como con embedings. 
+3) calcular la similitud coseno entre los vectores de los jugadores para identificar los jugadores más parecidos tanto con PCA como con embedings.
 El procedimiento que seguimos fue bastante detallado. Leímos y estructuramos datos de StatsBomb. Revisamos el estado y calidad de los datos, como filtrando jugadores que hayan realizado 30 acciones o más (min_actions=30) y que hayan jugado mínimo 900 minutos. 
 Lo primero que hicimos fue crear un fingerprint por jugador, el cual incluye características y métricas estandarizadas individuales como tiros, pases, entradas, intercepciones, regates, centros, goles esperados, asistencias esperadas, acciones de creación de tiro, acciones de creación de gol, pases progresivos, acarreos progresivos, presiones, recuperaciones. Aplicamos PCA para reducir la dimensionalidad de estos datos y ocupar sólo acciones de interés. Así mismo determinamos que el número óptimo de clústeres es 4 y dadas las características de cada uno definimos que fueran
 - delantero de área
