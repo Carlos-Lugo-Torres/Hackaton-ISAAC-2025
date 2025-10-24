@@ -1,0 +1,30 @@
+# ===============================
+# Requerimientos para Scouting App
+# Módulos: Embeddings / Frankenstein / Clusters
+# ===============================
+
+# --- Core scientific stack ---
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.5.2
+matplotlib==3.9.2
+
+# --- Embeddings y NLP ---
+gensim==4.3.3
+
+# --- Web UI / Dashboard ---
+streamlit==1.38.0
+
+# --- API y datos ---
+statsbombpy==1.10.0
+
+# --- Lectura / escritura de archivos .parquet y compresión ---
+pyarrow==17.0.0
+
+# --- Utilidades ---
+tqdm==4.66.4
+pathlib
+pickle-mixin
+
+# --- Visualización opcional ---
+seaborn==0.13.2
