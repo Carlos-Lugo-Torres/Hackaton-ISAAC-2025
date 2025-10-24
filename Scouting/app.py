@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 
 from gensim.models import Doc2Vec
 
-from src.modules.frankenstein import render_frankenstein
 from src.events_embeddings.embeddings import doc2vec_neighbors
 from src.shared.helpers import radar_compare_players, pick_player_row, plot_embedding_scatter
 from src.fingerprints.prep import (
